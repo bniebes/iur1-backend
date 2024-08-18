@@ -11,12 +11,12 @@ public class Configuration {
     public final WebServerConfiguration webServerConfiguration;
     public final PlaylistConfiguration playlistConfiguration;
 
-    public Configuration() {
+    public Configuration(final EnvironmentAccessor environmentAccessor) {
         log.atInfo()
                 .addMarker(GlobalConstants.MARKER_APPLICATION)
                 .setMessage("Load configuration")
                 .log();
-        this.webServerConfiguration = WebServerConfiguration.fromEnvironment();
-        this.playlistConfiguration = PlaylistConfiguration.fromEnvironment();
+        this.webServerConfiguration = WebServerConfiguration.from(environmentAccessor);
+        this.playlistConfiguration = PlaylistConfiguration.from(environmentAccessor);
     }
 }

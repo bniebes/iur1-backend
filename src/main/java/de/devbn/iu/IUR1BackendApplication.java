@@ -1,6 +1,7 @@
 package de.devbn.iu;
 
 import de.devbn.iu.application.Configuration;
+import de.devbn.iu.application.EnvironmentAccessor;
 import de.devbn.iu.application.HttpServices;
 import de.devbn.iu.application.Services;
 import de.devbn.iu.constant.GlobalConstants;
@@ -15,7 +16,7 @@ public class IUR1BackendApplication implements AutoCloseable {
     private final int port;
 
     public IUR1BackendApplication() {
-        final var configuration = new Configuration();
+        final var configuration = new Configuration(EnvironmentAccessor.getEnvFromSystem());
         this.services = new Services(configuration);
         this.httpServices = new HttpServices(services);
         this.port = configuration.webServerConfiguration.port();
