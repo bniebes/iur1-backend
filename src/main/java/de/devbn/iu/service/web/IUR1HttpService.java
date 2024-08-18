@@ -16,8 +16,7 @@ public class IUR1HttpService implements HttpService {
 
     @Override
     public void routing(final HttpRules httpRules) {
-        httpRules.get("/health", this::health)
-                .register("/playlist", playlistHttpService);
+        httpRules.get("/health", this::health).register("/playlist", playlistHttpService);
     }
 
     private void health(final ServerRequest req, final ServerResponse res) {
